@@ -1,12 +1,7 @@
-#Descrição
+# Descrição
 Minha solução (em andamento) para o [desafio do Frontend Mentor](https://www.frontendmentor.io/challenges/url-shortening-api-landing-page-2ce3ob-G), utilizando ReactJS e Styled Components.
 
 DEMO: https://vicaw.github.io/URL-Shortener/
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
