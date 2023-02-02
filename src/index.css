@@ -1,0 +1,24 @@
+:root {
+  --siteSpacing: 11.673vw;
+}
+@media screen and (max-width: 1023px) {
+  :root {
+    --siteSpacing: 24px;
+  }
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
