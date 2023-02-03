@@ -1,13 +1,12 @@
 import styled, { css } from "styled-components";
 
-
 export const NavWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   justify-content: space-between;
   z-index: 1;
 
-  & a{
+  & a {
     text-decoration: none;
     display: grid;
     place-items: center;
@@ -17,22 +16,21 @@ export const NavWrapper = styled.div`
     font-size: 0.95rem;
     font-weight: bold;
     border-radius: 4px;
-    color:hsl(257, 7%, 63%);
+    color: hsl(257, 7%, 63%);
     transition: color 0.2s linear;
 
     &:hover {
-      color: hsl(260, 8%, 14%);     
+      color: hsl(260, 8%, 14%);
     }
   }
 
-
-  & nav{
+  & nav {
     display: flex;
     gap: 2.223vw;
     align-items: center;
   }
 
-  & div{
+  & div {
     display: flex;
     gap: 2.223vw;
 
@@ -55,49 +53,64 @@ export const NavWrapper = styled.div`
     left: 0;
     top: 100%;
     flex-direction: column;
-    margin: 0 var(--siteSpacing);
-    padding: 40px 0px;
+    margin: 1rem var(--siteSpacing);
+    padding: 40px 1.5rem;
     pointer-events: ${({ open }) => (open ? "all" : "none")};
     background: hsl(257, 27%, 26%);
     border-radius: 10px;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);   
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
     transition: clip-path ease-in-out 0.3s;
+    gap: 1.5rem;
 
-      ${(props) =>
-        props.open
-          ? css`
-              clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    ${(props) =>
+      props.open
+        ? css`
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 
-              a {
-                opacity: 1;
-                transition: opacity 0.25s linear;
-              }
-            `
-          : css`
-              a {
-                opacity: 0;
-                transition: opacity 0.15s linear;
-              }
-            `}
+            a {
+              opacity: 1;
+              transition: opacity 0.25s linear;
+            }
+          `
+        : css`
+            a {
+              opacity: 0;
+              transition: opacity 0.15s linear;
+            }
+          `}
 
     & nav,
-    & div{
+    & div {
       flex-direction: column;
-      margin: 0 24px;
+      gap: 1.5rem;
       align-items: center;
 
-      a{
+      a {
         width: 100%;
         color: white;
       }
     }
 
-    & nav{
-      border-bottom: 1px solid #544A6D;
+    & div {
+      a:last-child {
+        padding: 9px 0;
+      }
+      a:first-child:hover {
+        color: gray;
+      }
     }
-    
+
+    & nav {
+      border-bottom: 1px solid #544a6d;
+      padding-bottom: 1.5rem;
+      a {
+        :hover {
+          color: gray;
+        }
+      }
+    }
   }
-`
+`;
 
 export const HamburgerButton = styled.button`
   display: flex;

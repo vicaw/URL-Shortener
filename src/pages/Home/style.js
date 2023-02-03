@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { ReactComponent as WorkingSVG } from "../assets/images/illustration-working.svg";
-import workingSVG from "../assets/images/illustration-working.svg";
-import Shortener from "../components/Shortener";
-import InfoCardList from "../components/InfoCardList";
-import formBackground from "../assets/images/bg-boost-desktop.svg";
+import boostBackground from "../../assets/images/bg-boost-desktop.svg";
+import boostBackgroundMobile from "../../assets/images/bg-boost-mobile.svg";
 
-const Main = styled.main`
+export const Main = styled.main`
   //background: cornsilk;
 `;
 
-const Wrap = styled.div`
+export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,11 +21,14 @@ const Wrap = styled.div`
       : css`
           & {
             align-items: flex-start;
+            @media screen and (max-width: 740px) {
+              align-items: center;
+            }
           }
         `}
 `;
 
-const Section1 = styled.section`
+export const Section1 = styled.section`
   display: grid;
   align-items: center;
   padding-left: var(--siteSpacing);
@@ -52,19 +51,34 @@ const Section1 = styled.section`
   }
 
   & #imag {
-    //background-image: url(${workingSVG});
-    //background-size: 100% 100%;
-    //background-repeat: no-repeat;
-    //height: 482px;
     display: flex;
     align-items: center;
     position: relative;
-    left: 5vw;
-    //justify-content: flex-end;
+    height: 100%;
+    left: 8vw;
+  }
+
+  @media screen and (max-width: 740px) {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    padding: 0 var(--siteSpacing);
+    text-align: center;
+
+    & p {
+      margin-top: 1rem;
+    }
+
+    & #imag {
+      height: auto;
+      width: 130vw;
+      max-width: 733px;
+      left: 25vw;
+    }
   }
 `;
 
-const GetStartedButton = styled.button`
+export const GetStartedButton = styled.button`
   all: unset;
   color: white;
   margin-top: 39px;
@@ -81,13 +95,16 @@ const GetStartedButton = styled.button`
   }
 `;
 
-const Section2 = styled.section`
+export const Section2 = styled.section`
   margin-top: clamp(30px, 4.72vw, 68px);
+  @media screen and (max-width: 740px) {
+    margin-top: 5rem;
+  }
 `;
 
-const Section3 = styled.section`
+export const Section3 = styled.section`
   padding: 0 var(--siteSpacing);
-  height: 500px;
+  //height: 500px;
   background: #f0f1f6;
   display: flex;
   flex-direction: column;
@@ -111,71 +128,35 @@ const Section3 = styled.section`
     margin-top: 20px;
     color: hsl(257, 7%, 63%);
   }
+
+  @media screen and (max-width: 730px) {
+    padding-top: 5rem;
+    gap: 4.5rem;
+  }
 `;
 
-const Section4 = styled.section`
+export const Section4 = styled.section`
   height: 250px;
   background: teal;
   display: grid;
   place-items: center;
+  padding: 0 var(--siteSpacing);
+  text-align: center;
 
   background: hsl(257, 27%, 26%);
 
-  background-image: url(${formBackground});
+  background-image: ${(props) =>
+    props.isMobile
+      ? `url(${boostBackgroundMobile})`
+      : `url(${boostBackground})`};
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
   & h2 {
-    font-size: clamp(35px, 2.78vw, 40px);
+    font-size: clamp(30px, 2.78vw, 40px);
     line-height: 1.15em;
     letter-spacing: -1px;
     margin: 0;
     color: white;
   }
 `;
-
-const Home = () => {
-  return (
-    <Main>
-      <Section1>
-        <Wrap>
-          <h1>More than just shorter links</h1>
-          <p>
-            Build your brand's recognition and get detailed insights on how your
-            links are performing.
-          </p>
-          <GetStartedButton>Get Started</GetStartedButton>
-        </Wrap>
-
-        <div id="imag">
-          <WorkingSVG />
-        </div>
-      </Section1>
-
-      <Section2>
-        <Shortener />
-      </Section2>
-
-      <Section3>
-        <div>
-          <h2>Advanced Statistics</h2>
-          <p>
-            Track how your link are performing across the web with our advanced
-            statistics dashboard.
-          </p>
-        </div>
-
-        <InfoCardList />
-      </Section3>
-
-      <Section4>
-        <Wrap center>
-          <h2>Boost your links today</h2>
-          <GetStartedButton>Get Started</GetStartedButton>
-        </Wrap>
-      </Section4>
-    </Main>
-  );
-};
-
-export default Home;

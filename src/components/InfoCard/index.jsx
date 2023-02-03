@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 
 const Card = styled.div`
@@ -7,7 +7,7 @@ const Card = styled.div`
   max-width: 350px;
   height: clamp(267px, 100%, 1000px);
   // max-height: 267px;
-  padding: clamp(0px, 0.35vw, 5px) clamp(0px, 2.29vw, 33px);
+  padding: 0 clamp(0px, 2.29vw, 33px) clamp(0px, 2.29vw, 33px);
   background: white;
   box-sizing: border-box;
   border-radius: 7px;
@@ -26,6 +26,15 @@ const Card = styled.div`
   p {
     font-size: 15px;
     text-align: start !important;
+    margin-block-end: 0;
+  }
+
+  @media screen and (max-width: 730px) {
+    align-items: center;
+    padding: 0 2rem 2rem;
+    p {
+      text-align: center !important;
+    }
   }
 
   @media screen and (max-width: 1140px) {
@@ -37,33 +46,61 @@ const Card = styled.div`
 
   ${(props) =>
     props.center
-      ? css`
-          z-index: 1;
-          &::after {
-            content: "";
-            width: 100px;
-            height: 8px;
-            z-index: -1;
-            right: 0;
-            bottom: 55%;
-            transform: translateX(100%);
-            position: absolute;
-            background: hsl(180, 66%, 49%);
-          }
+      ? !props.vertical
+        ? css`
+            z-index: 1;
+            &::after {
+              content: "";
+              width: 100px;
+              height: 8px;
+              z-index: -1;
+              right: 0;
+              bottom: 55%;
+              transform: translateX(100%);
+              position: absolute;
+              background: hsl(180, 66%, 49%);
+            }
 
-          &::before {
-            content: "";
-            /* display: inline-block; */
-            width: 100px;
-            height: 8px;
-            z-index: -1 !important;
-            bottom: 55%;
-            left: 0;
-            transform: translateX(-100%);
-            position: absolute;
-            background: hsl(180, 66%, 49%);
-          }
-        `
+            &::before {
+              content: "";
+              /* display: inline-block; */
+              width: 100px;
+              height: 8px;
+              z-index: -1 !important;
+              bottom: 55%;
+              left: 0;
+              transform: translateX(-100%);
+              position: absolute;
+              background: hsl(180, 66%, 49%);
+            }
+          `
+        : css`
+            z-index: 1;
+            &::after {
+              content: "";
+              width: 8px;
+              height: 100px;
+              z-index: -1;
+              right: 50%;
+              bottom: -40%;
+              transform: translateX(55%);
+              position: absolute;
+              background: hsl(180, 66%, 49%);
+            }
+
+            &::before {
+              content: "";
+              /* display: inline-block; */
+              width: 8px;
+              height: 100px;
+              z-index: -1 !important;
+              right: 50%;
+              top: -40%;
+              transform: translateX(55%);
+              position: absolute;
+              background: hsl(180, 66%, 49%);
+            }
+          `
       : null}
 `;
 
@@ -79,9 +116,9 @@ const CardIcon = styled.div`
   background-position: center;
 `;
 
-const InfoCard = ({ children, icon, index, center }) => {
+const InfoCard = ({ children, icon, index, center, vertical }) => {
   return (
-    <Card center={center} index={index}>
+    <Card center={center} index={index} vertical={vertical}>
       <CardIcon image={icon} />
       {children}
     </Card>

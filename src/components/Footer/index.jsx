@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
 import FooterLinks from "../FooterLinks";
 import Logo from "../Logo";
-import Navbar from "../Navbar";
 import SocialMediaLinks from "../SocialMediaLinks";
 
 const StyledFooter = styled.footer`
@@ -13,18 +11,27 @@ const StyledFooter = styled.footer`
   position: relative;
   gap: 100px;
 
-  @media screen and (max-width: 2px) {
+  @media screen and (max-width: 1255px) {
+    padding: 71px 24px;
+  }
+
+  @media screen and (max-width: 1005px) {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-column-gap: 5px;
-    justify-items: center;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 0;
+  }
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 3rem;
   }
 `;
 
 const StyledLogo = styled(Logo)`
   flex-grow: 1;
-
-`
+`;
 
 const Footer = () => {
   return (
@@ -50,7 +57,6 @@ const Footer = () => {
       </FooterLinks>
 
       <SocialMediaLinks />
-
     </StyledFooter>
   );
 };

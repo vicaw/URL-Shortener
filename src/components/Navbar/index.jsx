@@ -1,7 +1,5 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HamburgerButton, NavWrapper } from "./style";
-
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,20 +19,28 @@ const Navbar = () => {
     }
 
     return () => document.removeEventListener("click", handleClickOutside);
-  }, [isOpen, handleClickOutside]);
+  }, [isOpen]);
+
+  const Link = ({ children }) => {
+    return (
+      <a onClick={() => setIsOpen(!isOpen)} href="/#">
+        {children}
+      </a>
+    );
+  };
 
   return (
     <>
       <NavWrapper open={isOpen}>
         <nav open={isOpen} ref={navRef}>
-          <a onClick={() => setIsOpen(!isOpen)}>Features</a>
-          <a onClick={() => setIsOpen(!isOpen)}>Pricing</a>
-          <a onClick={() => setIsOpen(!isOpen)}>Resources</a>
+          <Link>Features</Link>
+          <Link>Pricing</Link>
+          <Link>Resources</Link>
         </nav>
 
         <div>
-          <a onClick={() => setIsOpen(!isOpen)}>Login</a>
-          <a onClick={() => setIsOpen(!isOpen)}>Sing Up</a>
+          <Link>Login</Link>
+          <Link>Sign Up</Link>
         </div>
       </NavWrapper>
 
