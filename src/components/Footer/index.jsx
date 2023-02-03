@@ -38,22 +38,22 @@ const Footer = () => {
     <StyledFooter>
       <StyledLogo white />
       <FooterLinks title="Features">
-        <a href="#">Link Shortening</a>
-        <a href="#">Branded Links</a>
-        <a href="#">Analytics</a>
+        <a href="/#">Link Shortening</a>
+        <a href="/#">Branded Links</a>
+        <a href="/#">Analytics</a>
       </FooterLinks>
 
       <FooterLinks title="Resources">
-        <a href="#">Blog</a>
-        <a href="#">Developers</a>
-        <a href="#">Support</a>
+        <a href="/#">Blog</a>
+        <a href="/#">Developers</a>
+        <a href="/#">Support</a>
       </FooterLinks>
 
       <FooterLinks title="Company">
-        <a href="#">About</a>
-        <a href="#">Our Team</a>
-        <a href="#">Careers</a>
-        <a href="#">Contact</a>
+        <a href="/#">About</a>
+        <a href="/#">Our Team</a>
+        <a href="/#">Careers</a>
+        <a href="/#">Contact</a>
       </FooterLinks>
 
       <SocialMediaLinks />
