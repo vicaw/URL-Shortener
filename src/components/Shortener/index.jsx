@@ -13,6 +13,8 @@ import {
   SubmitButton,
 } from "./style";
 
+require("dotenv").config();
+
 const Shortener = () => {
   const [linkList, setLinkList] = useState([]);
   const [request, setRequest] = useState("");
@@ -38,11 +40,50 @@ const Shortener = () => {
   useEffect(() => {
     if (request !== "" && !loading) {
       setLoading(1);
+
+      const requestData = {
+        link: request,
+        generator: "owo",
+        metadata: "OWOIFY",
+      };
+
+      let source = axios.CancelToken.source();
+
+      axios
+        .post(process.env.REACT_APP_API_URL, requestData, {
+          cancelToken: source.token, // Atribui o cancelToken
+          headers: {
+            Accept: "application/json",
+          },
+        })
+        .then((res) => {
+          setLinkList((prevLinkList) => {
+            const newLink = {
+              shortened: res.data.id,
+              original: res.data.destination,
+            };
+            return [...prevLinkList, newLink];
+          });
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) {
+            console.log("Solicitação cancelada:", e.message);
+          } else {
+            console.error("Erro:", e);
+          }
+        })
+        .finally(() => {
+          setLoading(0);
+          setRequest("");
+          form.resetFields();
+        });
+
+      /*
       let cancel;
       axios({
-        method: "GET",
-        url: `https://api.shrtco.de/v2/shorten`,
-        params: { url: request },
+        method: "POST",
+        url: `https://owo.vc/api/v2/link`,
+        params: { link: request, generator: "owo", metadata: "IGNORE" },
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
         headers: { Accept: "application/json" },
       })
@@ -63,8 +104,9 @@ const Shortener = () => {
           setRequest("");
           form.resetFields();
         });
+      */
 
-      return () => cancel();
+      return () => source.cancel();
     }
   }, [request]);
 
